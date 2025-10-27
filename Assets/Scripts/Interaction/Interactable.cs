@@ -7,4 +7,14 @@ public abstract class Interactable : MonoBehaviour, IInteractable
     public string InteractionPrompt => interactionPrompt;
 
     public abstract void Interact(GameObject interactor);
+
+    public void OnFocusEnter()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public void OnFocusExit()
+    {
+        throw new System.NotImplementedException();
+    }
 }

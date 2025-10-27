@@ -6,8 +6,8 @@ public class RaycastInteraction : InteractionMethod
     [SerializeField] private float interactRange = 3f;
     [SerializeField] private LayerMask interactLayer;
     [SerializeField] private Camera cam;
-    [SerializeField] private bool usePlayerOrigin = false; 
-    [SerializeField] private Transform playerOrigin;     
+    [SerializeField] private bool usePlayerOrigin = false;
+    [SerializeField] private Transform playerOrigin;
     [Header("Gizmos")]
     [SerializeField] private bool drawGizmos = true;
     [SerializeField] private Color rayColor = new Color(0f, 1f, 1f, 0.6f);
@@ -22,7 +22,7 @@ public class RaycastInteraction : InteractionMethod
 
         if (usePlayerOrigin && playerOrigin != null)
         {
-            origin = playerOrigin.position + Vector3.up * 1.5f; // istersen offset'i ayarlayabilirsin
+            origin = playerOrigin.position + Vector3.up * 1.5f; 
             direction = playerOrigin.forward;
         }
         else
@@ -37,7 +37,7 @@ public class RaycastInteraction : InteractionMethod
         {
             return hit.collider.GetComponent<IInteractable>();
         }
-
+        
         return null;
     }
 

@@ -15,13 +15,32 @@ public class InteractionSystem : MonoBehaviour
 
     private void Update()
     {
-        currentInteractable = interactionMethod.DetectInteractable();
+        IInteractable detected = interactionMethod.DetectInteractable();
+
+        if (detected != currentInteractable)
+        {
+            if (currentInteractable != null)
+            {
+                currentInteractable.OnFocusExit();
+            }
+
+            currentInteractable = detected;
+
+            if (currentInteractable != null)
+            {
+                if (currentInteractable is BaseInteractable baseInt)
+                    baseInt.SetPlayer(transform);
+
+                currentInteractable.OnFocusEnter();
+            }
+        }
+
+        // input test
+        bool pressed = input.IsInteracting();
 
         if (currentInteractable != null)
         {
-            // prompt gosterebiliriz
-            // TODOO: UI sistemi eklendiginde buraya ekle
-            if (input.IsInteracting())
+            if (pressed)
             {
                 currentInteractable.Interact(gameObject);
             }
