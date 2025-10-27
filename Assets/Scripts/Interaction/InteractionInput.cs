@@ -2,8 +2,21 @@ using UnityEngine;
 
 public class InteractionInput : MonoBehaviour
 {
+    private bool uiInteractPressed = false;
+
     public bool IsInteracting()
     {
-        return Input.GetKeyDown(KeyCode.E); // Yeni Input sisteme kolayca uyarlanabilir
+        bool keyboardInput = Input.GetKeyDown(KeyCode.E);
+        bool uiInput = uiInteractPressed;
+
+        if (uiInteractPressed)
+            uiInteractPressed = false; 
+
+        return keyboardInput || uiInput;
+    }
+
+    public void OnUIInteractPressed()
+    {
+        uiInteractPressed = true;
     }
 }
